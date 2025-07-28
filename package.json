@@ -12,5 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "vite": "^7.0.6"
   }
 }
