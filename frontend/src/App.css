@@ -84,20 +84,3 @@
 .read-the-docs {
   color: #888;
 }
-
-/* ✅ Delete Account Button Styling */
-.delete-button {
-  background-color: #e11d48; /* Tailwind red-600 */
-  color: white;
-  padding: 0.75em 1.5em;
-  font-weight: bold;
-  border: none;
-  border-radius: 0.5em;
-  cursor: pointer;
-  transition: background-color 200ms ease;
-  margin-top: 1rem;
-}
-
-.delete-button:hover {
-  background-color: #be123c; /* Tailwind red-700 */
-}
