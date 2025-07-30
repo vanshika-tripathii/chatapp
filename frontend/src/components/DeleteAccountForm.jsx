@@ -48,6 +48,7 @@
 // };
 
 // export default DeleteAccountForm;
+
 import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore";
 import { axiosInstance } from "../lib/axios";
@@ -70,17 +71,21 @@ const DeleteAccountForm = () => {
     try {
       setLoading(true);
 
-      // Step 1: Delete the account (make sure user is still authenticated here)
-      await axiosInstance.delete("/auth/delete-account",{withCredentials: true});
+      // Attempt to delete account
+      const res = await axiosInstance.delete("/auth/delete-account", {
+        withCredentials: true,
+      });
 
-      toast.success("Account deleted successfully.");
+      if (res.status === 200) {
+        toast.success("Account deleted successfully.");
 
-      // Step 2: Now logout & reset state after successful deletion
-      logout();
-      resetChat();
-
-      // Step 3: Redirect
-      navigate("/login");
+        // Proceed with logout and cleanup
+        logout();
+        resetChat();
+        navigate("/login");
+      } else {
+        toast.error("Failed to delete account.");
+      }
     } catch (err) {
       console.error("Delete failed", err);
       toast.error(err.response?.data?.message || "Failed to delete account.");
